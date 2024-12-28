@@ -129,12 +129,12 @@ void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, char 
 		if (*k == 1) {
 			board[*row][*column] = 'X';
 			*k = 2;
-			printf("O's move now\n");
+			printf(BLUE"O's move now\n"DEFAULT_TXT);
 		}
 		else if (*k == 2) {
 			board[*row][*column] = 'O';
 			*k = 1;
-			printf("X's move now\n");
+			printf(RED"X's move now\n"DEFAULT_TXT);
 		}
 		printBoard(board);
 	}
