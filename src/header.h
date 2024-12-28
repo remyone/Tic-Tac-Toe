@@ -81,10 +81,10 @@ void createRndNumForTheBeggining(short* k) {
 	int random_number = rand() % 2 + 1;
 	if (random_number == 1) {
 		*k = 1;
-		printf("X's move now\n");
+		printf(RED"X's move now\n"DEFAULT_TXT);
 	} else if (random_number == 2) {
 		*k = 2;
-		printf("O's move now\n");
+		printf(BLUE"O's move now\n"DEFAULT_TXT);
 	}
 }
 
