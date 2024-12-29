@@ -3,7 +3,7 @@
 #include <time.h>
 #include "header.h"
 
-void easy(char board[3][3], short *k, short *row, short *column, short *move) {
+void easy(short *k, short *row, short *column, short *move) {
 	srand(time(NULL));
 	int num = 3;
 	int num1 = 3;

@@ -4,18 +4,24 @@
 #include <stdbool.h>
 
 #define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define YELLOW "\x1b[33m"
 #define BLUE "\x1b[34m"
 #define DEFAULT_TXT "\x1b[0m"
 
-void printBoard(char arr[3][3]) {
+static char board[3][3] = { {'-', '-', '-'},
+						    {'-', '-', '-'},
+						    {'-', '-', '-'} };
+
+void printBoard() {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			if (arr[i][j] == 'X') 
-				printf(RED"%c"DEFAULT_TXT, arr[i][j]);
-			else if (arr[i][j] == 'O') 
-				printf(BLUE"%c"DEFAULT_TXT, arr[i][j]);
+			if (board[i][j] == 'X') 
+				printf(RED"%c"DEFAULT_TXT, board[i][j]);
+			else if (board[i][j] == 'O') 
+				printf(BLUE"%c"DEFAULT_TXT, board[i][j]);
 			else 
-				printf("%c", arr[i][j]);
+				printf("%c", board[i][j]);
 		
 		}
 		printf("\n");
@@ -23,53 +29,53 @@ void printBoard(char arr[3][3]) {
 	printf("\n");
 }
 
-void checkWinOrNot(char arr[3][3], bool *isWorking) {
-	if (arr[0][0] == 'X' && arr[1][1] == 'X' && arr[2][2] == 'X') {
+void checkWinOrNot(bool *isWorking) {
+	if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][0] == 'O' && arr[1][1] == 'O' && arr[2][2] == 'O') {
+	} else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][2] == 'X' && arr[1][1] == 'X' && arr[2][0] == 'X') {
+	} else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][2] == 'O' && arr[1][1] == 'O' && arr[2][0] == 'O') {
+	} else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][0] == 'X' && arr[0][1] == 'X' && arr[0][2] == 'X') {
+	} else if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][0] == 'O' && arr[0][1] == 'O' && arr[0][2] == 'O') {
+	} else if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[1][0] == 'X' && arr[1][1] == 'X' && arr[1][2] == 'X') {
+	} else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[1][0] == 'O' && arr[1][1] == 'O' && arr[1][2] == 'O') {
+	} else if (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[2][0] == 'X' && arr[2][1] == 'X' && arr[2][2] == 'X') {
+	} else if (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[2][0] == 'O' && arr[2][1] == 'O' && arr[2][2] == 'O') {
+	} else if (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][0] == 'X' && arr[1][0] == 'X' && arr[2][0] == 'X') {
+	} else if (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][0] == 'O' && arr[1][0] == 'O' && arr[2][0] == 'O') {
+	} else if (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][1] == 'X' && arr[1][1] == 'X' && arr[2][1] == 'X') {
+	} else if (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][1] == 'O' && arr[1][1] == 'O' && arr[2][1] == 'O') {
+	} else if (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][2] == 'X' && arr[1][2] == 'X' && arr[2][2] == 'X') {
+	} else if (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') {
 		printf(RED"X is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
-	} else if (arr[0][2] == 'O' && arr[1][2] == 'O' && arr[2][2] == 'O') {
+	} else if (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') {
 		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 		*isWorking = false;
 	}
@@ -120,7 +126,7 @@ void rndMoveBeggin(short *m) {
 		*m = 2;
 }
 
-void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, char board[3][3], bool *isWorking, short *m) {
+void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, bool *isWorking, short *m) {
 	if (*ForB == 1) {
 		printf("Entry row(0-2): ");
 		scanf_s("%hd", row);
@@ -144,7 +150,7 @@ void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, char 
 		printf("Entry level(easy, medium, hard): ");
 		fgets(level, sizeof(level), stdin);
 		if (level == "easy") {
-			easy(board, *k, *row, *column, *m);
+			easy(*k, *row, *column, *m);
 		}
 		else if (level == "medium") {
 			medium();
@@ -163,4 +169,17 @@ void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, char 
 			*isWorking = false;
 		}
 	}
+}
+
+void menu() {
+	printf(BLUE"****************************\n*"DEFAULT_TXT);
+	printf(YELLOW"       Tic Tac Toe    "DEFAULT_TXT);
+	printf(BLUE"    *\n****************************\n*"DEFAULT_TXT);
+	printf(GREEN" 1. play with friend    "DEFAULT_TXT);
+	printf(BLUE"  *\n*"DEFAULT_TXT);
+	printf(GREEN" 2. play with bot       "DEFAULT_TXT);
+	printf(BLUE"  *\n*"DEFAULT_TXT);
+	printf(RED" 3. exit                "DEFAULT_TXT);
+	printf(BLUE"  *\n****************************\n"DEFAULT_TXT);
+	printf(BLUE"choose the number: "DEFAULT_TXT);
 }

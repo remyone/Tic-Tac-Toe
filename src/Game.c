@@ -2,24 +2,20 @@
 
 int main()
 {
-	printf("Welcome to game 'Tic Tac Toe'\n");
-	printf("I suppose that you know the rules\n");
-	char board[3][3] = { {'-', '-', '-'},
-						 {'-', '-', '-'},
-						 {'-', '-', '-'} };
-	printBoard(board);
 	bool isWorking = true;
 	short k, l, row, column, ForB, move;
 	short *p_k = &k;
-	printf("1.play with friend or 2.play with bot?(choose 1 or 2): ");
+	menu();
 	scanf_s("%hd", &ForB);
+	printf("That is your board:\n");
+	printBoard();
 	if (ForB == 1)
 		createRndNumForTheBeggining(p_k);
 	else if (ForB == 2)
 		createRndNumForTheBegginingForBotLevel(p_k, &l);
 	while (isWorking) {
-		whoIsMovingAndCheck(&ForB, p_k, &row, &column, board, &isWorking, &move);
-		checkWinOrNot(board, &isWorking);
+		whoIsMovingAndCheck(&ForB, p_k, &row, &column, &isWorking, &move);
+		checkWinOrNot(&isWorking);
 	}
 	return 0;
 }
