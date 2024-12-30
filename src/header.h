@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
@@ -12,6 +13,7 @@
 static char board[3][3] = { {'-', '-', '-'},
 						    {'-', '-', '-'},
 						    {'-', '-', '-'} };
+bool isWorking = true;
 
 void printBoard() {
 	for (int i = 0; i < 3; i++) {
@@ -29,60 +31,194 @@ void printBoard() {
 	printf("\n");
 }
 
-void checkWinOrNot(bool *isWorking) {
-	if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') {
-		printf(RED"X is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
-	} else if (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') {
-		printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
-		*isWorking = false;
+void checkWinOrNot(short *ForB) {
+	short int count = 0;
+	if (*ForB == 1) {
+		if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') {
+			printf(RED"X is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') {
+			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		}
+	} else if (*ForB == 2) {
+		if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') {
+			printf(RED"You are winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else if (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') {
+			printf(BLUE"Bot is winner!!!\n"DEFAULT_TXT);
+			isWorking = false;
+		} else {
+			if (board[0][0] != '-' && board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-'
+			 	&& board[1][1] != '-' && board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-'
+			    && board[2][2] != '-') {
+				printf("Draw!");
+				isWorking = false;
+			}
+		}
 	}
 }
 
 
-void createRndNumForTheBeggining(short* k) {
+//levels
+void easy(short *k, short *row, short *column, short *ForB) {
+	short int notEmpty = 0;
+	srand(time(NULL));
+	while (isWorking) {
+		int rowForBot = rand() % 2 + 1;
+		int columnForBot = rand() % 2 + 1;
+		if (*k == 2) {
+			printf(RED"Your move now\n"DEFAULT_TXT);
+			printf("entry row(0-2): ");
+			scanf("%hd", row);
+			printf("entry column(0-2): ");
+			scanf("%hd", column);
+			board[*row][*column] = 'X';
+			*k = 1;
+		} else if (*k == 1) {
+			printf(BLUE"Bot's move now\n"DEFAULT_TXT);
+			if (board[rowForBot][columnForBot] == '-')
+				board[rowForBot][columnForBot] = 'O';
+			else if (board[rowForBot][columnForBot] != '-')
+				if (board[rowForBot-1][columnForBot-1] == '-')
+					board[rowForBot-1][columnForBot-1] = 'O';
+				else if (board[rowForBot+1][columnForBot+1] == '-')
+					board[rowForBot+1][columnForBot+1] = 'O';
+				else {
+					for (int i = 0; i < 1; i++) {
+						for (int j = 0; j < 3; j++) {
+							if (board[i][j] == '-') {
+								board[i][j] = 'O';
+								notEmpty = 1;
+								break;
+							}
+						}
+					}
+					if (notEmpty != 1) {
+						for (int i = 1; i < 2; i++) {
+							for (int j = 0; j < 3; j++) {
+								if (board[i][j] == '-') {
+									board[i][j] = 'O';
+									notEmpty = 2;
+									break;
+								}
+							}
+						}
+						if (notEmpty != 2) {
+							for (int i = 2; i < 3; i++) {
+								for (int j = 0; j < 3; j++) {
+									if (board[i][j] == '-') {
+										board[i][j] = 'O';
+										notEmpty = 3;
+										break;
+									}
+								}
+							}
+						}
+					}
+					notEmpty = 0;
+				}
+			*k = 2;
+			printBoard();
+		}
+		checkWinOrNot(ForB);
+	}
+}
+
+/*void medium() {
+
+}
+
+void hard() {
+
+}
+*/
+
+void createRndNumForTheBeggining(short *k) {
 	srand(time(NULL));
 	int random_number = rand() % 2 + 1;
 	if (random_number == 1) {
@@ -99,21 +235,10 @@ void createRndNumForTheBegginingForBotLevel(short *k, short *l) {
 	int random_number = rand() % 2 + 1;
 	int random_number1 = rand() % 2 + 1;
 	if (random_number == 1) {
-		*k = 1;
-		if (random_number1 == 1) {
-			printf("Bot's(X) move now\n");
-		}
-		else {
-			printf("Bot's(O) move now\n");
-		}
+		*k = 1; // bot's move(O)
 	}
 	else if (random_number == 2) {
-		*k = 2;
-		if (random_number1 == 1) {
-			printf("Your(X) move now");
-		} else {
-			printf("Your(O) move now");
-		}
+		*k = 2; // user's move(X)
 	}
 }
 
@@ -126,48 +251,42 @@ void rndMoveBeggin(short *m) {
 		*m = 2;
 }
 
-void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, bool *isWorking, short *m) {
+void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, short *m) {
 	if (*ForB == 1) {
-		printf("Entry row(0-2): ");
-		scanf_s("%hd", row);
-		printf("Entry column(0-2): ");
-		scanf_s("%hd", column);
-		if (*k == 1) {
-			board[*row][*column] = 'X';
-			*k = 2;
-			printf(BLUE"O's move now\n"DEFAULT_TXT);
+		while (isWorking) {
+			printf("Entry row(0-2): ");
+			scanf_s("%hd", row);
+			printf("Entry column(0-2): ");
+			scanf_s("%hd", column);
+			if (*k == 1) {
+				board[*row][*column] = 'X';
+				*k = 2;
+				printf(BLUE"O's move now\n"DEFAULT_TXT);
+			}
+			else if (*k == 2) {
+				board[*row][*column] = 'O';
+				*k = 1;
+				printf(RED"X's move now\n"DEFAULT_TXT);
+			}
+			printBoard(board);
 		}
-		else if (*k == 2) {
-			board[*row][*column] = 'O';
-			*k = 1;
-			printf(RED"X's move now\n"DEFAULT_TXT);
-		}
-		printBoard(board);
+		checkWinOrNot(ForB);
 	}
-	/*else if (*ForB == 2) {
-		rndMoveBeggin(*m);
-		char level[6];
+	else if (*ForB == 2) {
+		rndMoveBeggin(m);
+		char level[15];
 		printf("Entry level(easy, medium, hard): ");
 		fgets(level, sizeof(level), stdin);
-		if (level == "easy") {
-			easy(*k, *row, *column, *m);
+		fgets(level, sizeof(level), stdin);
+		if (strstr(level, "easy") != NULL) {
+			easy(k, row, column, ForB);
 		}
-		else if (level == "medium") {
+		/*else if (level == "medium") {
 			medium();
 		}
 		else if (level == "hard") {
 			hard();
-		}
-	}*/
-	else {
-		if (*ForB > 2) {
-			printf("you wrote the number that is higher than the required number");
-			*isWorking = false;
-		}
-		else if (*ForB < 1) {
-			printf("you wrote the number that is less than the required number");
-			*isWorking = false;
-		}
+		}*/
 	}
 }
 

@@ -1,1 +1,1 @@
-This is my first git push
+Don't pay attention on that when bot is close to the win, and when he win other emtpy cells fulling bot's moving. I just can't come up with idea how to fix it.
