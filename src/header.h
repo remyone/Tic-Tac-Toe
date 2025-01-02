@@ -13,7 +13,7 @@
 static char board[3][3] = { {'-', '-', '-'},
 						    {'-', '-', '-'},
 						    {'-', '-', '-'} };
-bool isWorking = true;
+static bool isWorking = true;
 
 void printBoard() {
 	for (int i = 0; i < 3; i++) {
@@ -31,7 +31,6 @@ void printBoard() {
 }
 
 void checkWinOrNot(short *ForB) {
-	short int count = 0;
 	if (*ForB == 1) {
 		if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
 			printf(RED"X is winner!!!\n"DEFAULT_TXT);
@@ -293,7 +292,9 @@ void medium(short *k, short *row, short *column, short *ForB) {
 }
 
 void hard() {
-
+	/* how bot will move:
+		only algorithm and if user has two X and the user's win is close, then bot will move against these X
+	*/
 }
 
 void createRndNumForTheBeggining(short *k) {
@@ -351,8 +352,8 @@ void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, short
 				printf(RED"X's move now\n"DEFAULT_TXT);
 			}
 			printBoard(board);
+			checkWinOrNot(ForB);
 		}
-		checkWinOrNot(ForB);
 	}
 	else if (*ForB == 2) {
 		rndMoveBeggin(m);
