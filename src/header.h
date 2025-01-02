@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
@@ -24,7 +24,6 @@ void printBoard() {
 				printf(BLUE"%c"DEFAULT_TXT, board[i][j]);
 			else 
 				printf("%c", board[i][j]);
-		
 		}
 		printf("\n");
 	}
@@ -82,6 +81,13 @@ void checkWinOrNot(short *ForB) {
 		} else if (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') {
 			printf(BLUE"O is winner!!!\n"DEFAULT_TXT);
 			isWorking = false;
+		} else {
+			if (board[0][0] != '-' && board[0][1] != '-' && board[0][2] != '-' && board[1][0] != '-'
+			 	&& board[1][1] != '-' && board[1][2] != '-' && board[2][0] != '-' && board[2][1] != '-'
+			    && board[2][2] != '-') {
+				printf("Draw!");
+				isWorking = false;
+			}
 		}
 	} else if (*ForB == 2) {
 		if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
@@ -143,8 +149,6 @@ void checkWinOrNot(short *ForB) {
 	}
 }
 
-
-//levels
 void easy(short *k, short *row, short *column, short *ForB) {
 	short int notEmpty = 0;
 	srand(time(NULL));
@@ -254,16 +258,20 @@ void rndMoveBeggin(short *m) {
 void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, short *m) {
 	if (*ForB == 1) {
 		while (isWorking) {
-			printf("Entry row(0-2): ");
-			scanf_s("%hd", row);
-			printf("Entry column(0-2): ");
-			scanf_s("%hd", column);
 			if (*k == 1) {
+				printf(RED"Entry row(0-2): "DEFAULT_TXT);
+				scanf_s("%hd", row);
+				printf(RED"Entry column(0-2): "DEFAULT_TXT);
+				scanf_s("%hd", column);
 				board[*row][*column] = 'X';
 				*k = 2;
 				printf(BLUE"O's move now\n"DEFAULT_TXT);
 			}
 			else if (*k == 2) {
+				printf(BLUE"Entry row(0-2): "DEFAULT_TXT);
+				scanf_s("%hd", row);
+				printf(BLUE"Entry column(0-2): "DEFAULT_TXT);
+				scanf_s("%hd", column);
 				board[*row][*column] = 'O';
 				*k = 1;
 				printf(RED"X's move now\n"DEFAULT_TXT);
