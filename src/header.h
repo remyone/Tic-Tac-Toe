@@ -148,7 +148,7 @@ void checkWinOrNot(short *ForB) {
 		}
 	}
 }
-
+//levels
 void easy(short *k, short *row, short *column, short *ForB) {
 	short int notEmpty = 0;
 	srand(time(NULL));
@@ -165,6 +165,7 @@ void easy(short *k, short *row, short *column, short *ForB) {
 			*k = 1;
 		} else if (*k == 1) {
 			printf(BLUE"Bot's move now\n"DEFAULT_TXT);
+			//algorithm of bot
 			if (board[rowForBot][columnForBot] == '-')
 				board[rowForBot][columnForBot] = 'O';
 			else if (board[rowForBot][columnForBot] != '-')
@@ -207,20 +208,93 @@ void easy(short *k, short *row, short *column, short *ForB) {
 					notEmpty = 0;
 				}
 			*k = 2;
-			printBoard();
 		}
+		printBoard();
 		checkWinOrNot(ForB);
 	}
 }
 
-/*void medium() {
-
+void medium(short *k, short *row, short *column, short *ForB) {
+	int notEmpty = 0;
+	srand(time(NULL));
+	while (isWorking) {
+		int rndNum = rand() % 2 + 1;
+		if (*k == 2) {
+			printf(RED"Your move now\n"DEFAULT_TXT);
+			printf("entry row(0-2): ");
+			scanf("%hd", row);
+			printf("entry column(0-2): ");
+			scanf("%hd", column);
+			board[*row][*column] = 'X';
+			*k = 1;
+		} else if (*k == 1) {
+			printf(BLUE"Bot's move now\n"DEFAULT_TXT);
+			//algorithm of bot
+			if (rndNum == 1) {
+				if (board[0][0] == '-')
+					board[0][0] = 'O';
+				else if (board[2][0] == '-')
+					board[2][0] = 'O';
+				else if (board[2][2] == '-')
+					board[2][2] = 'O';
+				else if (board[0][2] == '-')
+					board[0][2] = 'O';
+				else if (board[0][0] == 'O' && board[2][0] == 'O' && board[1][0] == '-')
+					board[1][0] = 'O';
+				else if (board[2][0] == 'O' && board[2][2] == 'O' && board[2][1] == '-')
+					board[2][1] = 'O';
+				else if (board[0][0] == 'O' && board[0][2] == 'O' && board[0][1] == '-')
+					board[0][1] = 'O';
+				else if (board[2][2] == 'O' && board[0][1] == 'O' && board[1][2] == '-')
+					board[1][2] == 'O';
+				else if (board[0][0] == 'O' && board[2][2] == 'O' && board[1][1] == '-')
+					board[1][1] = 'O';
+				else if (board[0][2] == 'O' && board[2][0] == 'O' && board[1][1] == '-')
+					board[1][1] = 'O';
+			} else {
+				for (int i = 0; i < 1; i++) {
+						for (int j = 0; j < 3; j++) {
+							if (board[i][j] == '-') {
+								board[i][j] = 'O';
+								notEmpty = 1;
+								break;
+							}
+						}
+					}
+					if (notEmpty != 1) {
+						for (int i = 1; i < 2; i++) {
+							for (int j = 0; j < 3; j++) {
+								if (board[i][j] == '-') {
+									board[i][j] = 'O';
+									notEmpty = 2;
+									break;
+								}
+							}
+						}
+						if (notEmpty != 2) {
+							for (int i = 2; i < 3; i++) {
+								for (int j = 0; j < 3; j++) {
+									if (board[i][j] == '-') {
+										board[i][j] = 'O';
+										notEmpty = 3;
+										break;
+									}
+								}
+							}
+						}
+					}
+				notEmpty = 0;
+			}
+			*k = 2;
+		}
+		printBoard();
+		checkWinOrNot(ForB);
+	}
 }
 
 void hard() {
 
 }
-*/
 
 void createRndNumForTheBeggining(short *k) {
 	srand(time(NULL));
@@ -286,15 +360,12 @@ void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, short
 		printf("Entry level(easy, medium, hard): ");
 		fgets(level, sizeof(level), stdin);
 		fgets(level, sizeof(level), stdin);
-		if (strstr(level, "easy") != NULL) {
+		if (strstr(level, "easy") != NULL)
 			easy(k, row, column, ForB);
-		}
-		/*else if (level == "medium") {
-			medium();
-		}
-		else if (level == "hard") {
+		else if (strstr(level, "medium") != NULL)
+			medium(k, row, column, ForB);
+		else if (strstr(level, "hard") != NULL)
 			hard();
-		}*/
 	}
 }
 
