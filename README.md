@@ -1,5 +1,5 @@
 # 🎮 Network Tic-Tac-Toe  
-**Multiplayer game via TCP sockets in C**  
+**A console-based game with AI, multiplayer (on the same pc!)**  
 
 ## Features  
 - 🎮 **Modes**: **Player vs Player** (on the same pc), **Player vs AI** 
