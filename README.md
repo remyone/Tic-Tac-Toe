@@ -1,4 +1,4 @@
-# 🎮 Network Tic-Tac-Toe  
+# 🎮 Tic-Tac-Toe  
 **A console-based game with AI**
 
 ## Features  
