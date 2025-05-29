@@ -335,18 +335,18 @@ void whoIsMovingAndCheck(short *ForB, short *k, short *row, short *column, short
 		while (isWorking) {
 			if (*k == 1) {
 				printf(RED"Entry row(0-2): "DEFAULT_TXT);
-				scanf_s("%hd", row);
+				scanf("%hd", row);
 				printf(RED"Entry column(0-2): "DEFAULT_TXT);
-				scanf_s("%hd", column);
+				scanf("%hd", column);
 				board[*row][*column] = 'X';
 				*k = 2;
 				printf(BLUE"O's move now\n"DEFAULT_TXT);
 			}
 			else if (*k == 2) {
 				printf(BLUE"Entry row(0-2): "DEFAULT_TXT);
-				scanf_s("%hd", row);
+				scanf("%hd", row);
 				printf(BLUE"Entry column(0-2): "DEFAULT_TXT);
-				scanf_s("%hd", column);
+				scanf("%hd", column);
 				board[*row][*column] = 'O';
 				*k = 1;
 				printf(RED"X's move now\n"DEFAULT_TXT);

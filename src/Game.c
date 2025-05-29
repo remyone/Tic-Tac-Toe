@@ -5,7 +5,7 @@ int main()
 	short k, l, row, column, ForB, move;
 	short *p_k = &k;
 	menu();
-	scanf_s("%hd", &ForB);
+	scanf("%hd", &ForB);
 	if (ForB == 1) {
 		createRndNumForTheBeggining(p_k);
 		printf("That is your board:\n");
