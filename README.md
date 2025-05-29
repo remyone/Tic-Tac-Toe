@@ -1,5 +1,5 @@
 # 🎮 Network Tic-Tac-Toe  
-**A console-based game with AI, multiplayer (on the same pc!)**  
+**A console-based game with AI**
 
 ## Features  
 - 🎮 **Modes**: **Player vs Player** (on the same pc), **Player vs AI** 
